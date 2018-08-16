@@ -1,19 +1,19 @@
-// const http = require('http');
-const express = require('express');
-const MessagingResponse = require('twilio').twiml.MessagingResponse;
-
-const app = express();
-const port = process.env.PORT || 3000;
 require('dotenv').config();
 
 const accountSid = process.env.ACCOUNTSID;
 const authToken = process.env.AUTHTOKEN;
+
+// const http = require('http');
+const express = require('express');
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const client = require('twilio')(accountSid, authToken);
 
+const app = express();
+const port = process.env.PORT || 3000;
 
-// app.get('/', (req, res) => {
-//     res.send('I love you so much Seyeon');
-// });
+app.get('/', (req, res) => {
+    res.send(process.env.MY_PHONE_NUMBER);
+});
 
 app.post('/sms', (req, res) => {
     const twiml = new MessagingResponse();
